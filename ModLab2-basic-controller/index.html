@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>AngularJS: Framework Fundamentals course</title>
+    <meta name="description" content="Assignments being part of the edX AngularJS: Framework Fundamentals course offerend by Microsoft">
+    <meta name="author" content="Bram Laurijsen">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+</head>
+
+<body ng-controller="menuController">
+    <div class="container">
+        <h1>Tony's Pizza</h1>
+        <h2>{{::model.title}}</h2>
+        <!-- use the :: for one-time binding to provide a performance boost -->
+
+        <!-- user input from the view with one-way binding -->
+        <div>
+            <label>
+                <input type="radio" name="category" ng-click="changeMainDish('Cheese', 5.00)" /> Cheese Pizza</label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="category" ng-click="changeMainDish('Pepperoni', 5.00)" /> Pepperoni Pizza</label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="category" ng-click="changeMainDish('Margherita', 4.00)" /> Margherita Pizza</label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="category" ng-click="changeMainDish('BBQ Chicken', 5.50)"> BBQ Chicken Pizza</label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="category" ng-click="changeMainDish('Combo', 6.00)" /> Combo Pizza</label>
+        </div>
+        <!-- result from the controller -->
+        <div>
+            <h3>Selected Item</h3>
+            <pre>{{model.mainDish.name}} {{model.mainDish.price}}</pre>
+        </div>
+        <!-- user input from the view with two-way binding -->
+        <div>
+            <h3>Special Instuctions</h3>
+            <textarea class="form-control" ng-model="model.specialInstructions"></textarea>
+        </div>
+        <!-- result of the user input from the controller -->
+        <div>
+            <h3>Order Summary</h3>
+            <pre>{{model.mainDish.name}} {{model.mainDish.price}} - {{model.specialInstructions}}
+            </pre>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/menuController.js"></script>
+</body>
+
+</html>

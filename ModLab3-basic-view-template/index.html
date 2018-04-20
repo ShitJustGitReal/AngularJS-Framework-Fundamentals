@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>AngularJS: Framework Fundamentals course</title>
+    <meta name="description" content="Assignments being part of the edX AngularJS: Framework Fundamentals course offerend by Microsoft">
+    <meta name="author" content="Bram Laurijsen">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+</head>
+
+<body ng-controller="pizzaController">
+    <div class="container">
+        <h1>Tony's Pizza</h1>
+        <h2>{{::model.title}}</h2>
+        <h3>Topping Search</h3>
+        <input type="text" class="form-control" ng-change="closeAlert()" ng-model="model.search">
+        <!-- model.search is shorthand for model.search === true -->
+        <div ng-hide="model.search">
+            Enter the search criteria above.
+        </div>
+        <div ng-if="model.showAdded" class="alert alert-success">
+            Topping added <button ng-click="closeAlert()">close</button>
+        </div>
+        <div ng-if="model.search.length > 0 && filteredToppings.length === 0" class="alert alert-danger">
+            No results
+        </div>
+        <!-- https://stackoverflow.com/questions/21524572/how-to-show-a-message-when-filter-returns-nothing-in-ng-repeat-angularjs -->
+        <div ng-show="model.search" ng-repeat="topping in filteredToppings = (model.availableToppings | filter:model.search)">
+            <span ng-click="addTopping(topping)">{{topping}}</span>
+        </div>
+        <div ng-show="model.selectedToppings.length > 0">
+            <h3>Selected Toppings</h3>
+            <div ng-repeat="topping in model.selectedToppings">
+                {{topping}}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/pizzaController.js"></script>
+</body>
+
+</html>

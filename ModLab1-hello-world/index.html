@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html lang="en" ng-app="helloWorldApp">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>AngularJS: Framework Fundamentals course</title>
+    <meta name="description" content="Assignments being part of the edX AngularJS: Framework Fundamentals course offerend by Microsoft">
+    <meta name="author" content="Bram Laurijsen">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+</head>
+
+<body ng-controller="firstController">
+    <div class="container">
+        <h1>AngularFundamentals</h1>
+        <h2>{{'Hello from AngularJS'}}</h2>
+        <pre>{{appName}}</pre>
+    </div>
+    <div class="container" ng-controller="dateController">
+        <h2>Module 1 homework</h2>
+        <h3>The current date is: {{date}}</h3>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="app/scripts.js"></script>
+</body>
+
+</html>

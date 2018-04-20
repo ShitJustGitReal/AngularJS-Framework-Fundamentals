@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <title>Tony's Pizza - New User Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+</head>
+
+<body ng-controller="labController">
+    <div class="container">
+        <h1>New User Registration</h1>
+        <form class="form-horizontal" name="form" ng-hide="registered" novalidate> <!-- 'use the 'novalidate' attribute to disable default HTML5 validation -->
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="username">Username</label>
+                </div>
+                <div class="col-md-5">
+                    <input id="username" type="text" name="username" class="form-control" ng-model="model.username" required>
+                    <div class="alert alert-danger" ng-show="(form.username.$touched || form.$submitted) && form.username.$error.required">
+                        Username is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col-md-5">
+                    <input id="password" type="password" name="password" class="form-control" ng-model="model.password" required>
+                    <div class="alert alert-danger" ng-show="(form.password.$touched || form.$submitted) && form.password.$error.required">
+                        Password is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="name">Name</label>
+                </div>
+                <div class="col-md-5">
+                    <input id="name" type="text" name="name" class="form-control" ng-model="model.name" required>
+                    <div class="alert alert-danger" ng-show="(form.name.$touched || form.$submitted) && form.name.$error.required">
+                        Name is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="phone">Phone number</label>
+                </div>
+                <div class="col-md-5">
+                    <input id="phone" type="tel" name="phone" class="form-control" ng-model="model.phone" ng-required="!model.email">
+                    <div class="alert alert-danger" ng-show="(form.phone.$touched || form.$submitted) && form.phone.$error.required">
+                        Phone number is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="email">Email address</label>
+                </div>
+                <div class="col-md-5">
+                    <input id="email" type="email" name="email" class="form-control" ng-model="model.email" ng-required="!model.phone">
+                    <div class="alert alert-danger" ng-show="(form.email.$touched || form.$submitted) && form.email.$error.required">
+                        Email is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="favorite">Favorite pizza</label>
+                </div>
+                <div class="col-md-5">
+                    <select id="favorite" name="favorite" class="form-control" ng-model="model.favorite" ng-required="true">
+                        <option></option>
+                        <option>Cheese pizza</option>
+                        <option>Pepperoni pizza</option>
+                        <option>Margherita pizza</option>
+                        <option>BBQ chicken pizza</option>
+                        <option>Combo</option>
+                    </select>
+                    <div class="alert alert-danger" ng-show="(form.favorite.$touched || form.$submitted) && form.favorite.$error.required">
+                        Favorite is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-5">
+                    <input type="submit" value="Submit" class="btn btn-primary" ng-disabled="form.$invalid" ng-click="form.$valid && submit(model)"/>
+                    <button class="btn btn-default" ng-click="reset()">Reset</button>
+                </div>
+            </div>
+        </form>
+        <div ng-show="token">
+            <h2>{{successMessage}}</h2>
+            <h3>{{token}}</h3>
+        </div>
+        <div>
+            <h2>Model data</h2>
+            <pre>{{model|json}}</pre>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.min.js"></script>
+    <script src="./scripts/registrationService.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/labController.js"></script>
+</body>
+
+</html>
